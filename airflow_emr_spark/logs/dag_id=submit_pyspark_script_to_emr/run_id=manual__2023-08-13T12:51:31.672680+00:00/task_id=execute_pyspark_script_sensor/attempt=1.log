@@ -1,0 +1,37 @@
+[2023-08-13 12:51:48,072] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script_sensor manual__2023-08-13T12:51:31.672680+00:00 [queued]>
+[2023-08-13 12:51:48,091] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script_sensor manual__2023-08-13T12:51:31.672680+00:00 [queued]>
+[2023-08-13 12:51:48,092] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 12:51:48,094] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-08-13 12:51:48,095] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 12:51:48,117] {taskinstance.py:1377} INFO - Executing <Task(EmrStepSensor): execute_pyspark_script_sensor> on 2023-08-13 12:51:31.672680+00:00
+[2023-08-13 12:51:48,124] {standard_task_runner.py:52} INFO - Started process 264 to run task
+[2023-08-13 12:51:48,130] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'submit_pyspark_script_to_emr', 'execute_pyspark_script_sensor', 'manual__2023-08-13T12:51:31.672680+00:00', '--job-id', '73', '--raw', '--subdir', 'DAGS_FOLDER/orchestration/submit_spark_job_to_emr.py', '--cfg-path', '/tmp/tmpeiea99kj', '--error-file', '/tmp/tmpptbk8pml']
+[2023-08-13 12:51:48,133] {standard_task_runner.py:80} INFO - Job 73: Subtask execute_pyspark_script_sensor
+[2023-08-13 12:51:48,240] {task_command.py:370} INFO - Running <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script_sensor manual__2023-08-13T12:51:31.672680+00:00 [running]> on host airflow_scheduler
+[2023-08-13 12:51:48,403] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=submit_pyspark_script_to_emr
+AIRFLOW_CTX_TASK_ID=execute_pyspark_script_sensor
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-13T12:51:31.672680+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-13T12:51:31.672680+00:00
+[2023-08-13 12:51:48,443] {base.py:68} INFO - Using connection ID 'aws_default' for task execution.
+[2023-08-13 12:51:48,446] {base_aws.py:210} INFO - Credentials retrieved from extra_config
+[2023-08-13 12:51:48,447] {base_aws.py:100} INFO - Retrieving region_name from Connection.extra_config['region_name']
+[2023-08-13 12:51:48,500] {emr.py:317} INFO - Poking step s-006015930FUAYWJIO6QP on cluster j-1Z3BJELOTWETV
+[2023-08-13 12:51:48,890] {emr.py:74} INFO - Job flow currently PENDING
+[2023-08-13 12:52:48,898] {emr.py:317} INFO - Poking step s-006015930FUAYWJIO6QP on cluster j-1Z3BJELOTWETV
+[2023-08-13 12:52:49,357] {emr.py:74} INFO - Job flow currently FAILED
+[2023-08-13 12:52:49,375] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/sensors/emr.py", line 84, in poke
+    raise AirflowException(final_message)
+airflow.exceptions.AirflowException: EMR job failed for reason Unknown Error. with message None and log file s3://emr-data-947775527574/emr_logs/j-1Z3BJELOTWETV/steps/s-006015930FUAYWJIO6QP/
+[2023-08-13 12:52:49,380] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=submit_pyspark_script_to_emr, task_id=execute_pyspark_script_sensor, execution_date=20230813T125131, start_date=20230813T125148, end_date=20230813T125249
+[2023-08-13 12:52:49,394] {standard_task_runner.py:97} ERROR - Failed to execute job 73 for task execute_pyspark_script_sensor (EMR job failed for reason Unknown Error. with message None and log file s3://emr-data-947775527574/emr_logs/j-1Z3BJELOTWETV/steps/s-006015930FUAYWJIO6QP/; 264)
+[2023-08-13 12:52:49,442] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-08-13 12:52:49,471] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

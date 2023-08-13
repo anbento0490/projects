@@ -1,0 +1,32 @@
+[2023-08-13 13:31:48,162] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script_sensor manual__2023-08-13T13:31:40.657502+00:00 [queued]>
+[2023-08-13 13:31:48,192] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script_sensor manual__2023-08-13T13:31:40.657502+00:00 [queued]>
+[2023-08-13 13:31:48,193] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 13:31:48,194] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-08-13 13:31:48,195] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 13:31:48,212] {taskinstance.py:1377} INFO - Executing <Task(EmrStepSensor): execute_pyspark_script_sensor> on 2023-08-13 13:31:40.657502+00:00
+[2023-08-13 13:31:48,218] {standard_task_runner.py:52} INFO - Started process 939 to run task
+[2023-08-13 13:31:48,222] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'submit_pyspark_script_to_emr', 'execute_pyspark_script_sensor', 'manual__2023-08-13T13:31:40.657502+00:00', '--job-id', '101', '--raw', '--subdir', 'DAGS_FOLDER/orchestration/submit_spark_job_to_emr.py', '--cfg-path', '/tmp/tmpj0f6ejz_', '--error-file', '/tmp/tmph0kvvgz1']
+[2023-08-13 13:31:48,225] {standard_task_runner.py:80} INFO - Job 101: Subtask execute_pyspark_script_sensor
+[2023-08-13 13:31:48,305] {task_command.py:370} INFO - Running <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script_sensor manual__2023-08-13T13:31:40.657502+00:00 [running]> on host airflow_scheduler
+[2023-08-13 13:31:48,454] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=submit_pyspark_script_to_emr
+AIRFLOW_CTX_TASK_ID=execute_pyspark_script_sensor
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-13T13:31:40.657502+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-13T13:31:40.657502+00:00
+[2023-08-13 13:31:48,475] {base.py:68} INFO - Using connection ID 'aws_default' for task execution.
+[2023-08-13 13:31:48,478] {base_aws.py:210} INFO - Credentials retrieved from extra_config
+[2023-08-13 13:31:48,480] {base_aws.py:100} INFO - Retrieving region_name from Connection.extra_config['region_name']
+[2023-08-13 13:31:48,555] {emr.py:317} INFO - Poking step s-003915829FHJD31H6VAY on cluster j-1Z3BJELOTWETV
+[2023-08-13 13:31:48,883] {emr.py:74} INFO - Job flow currently PENDING
+[2023-08-13 13:32:48,898] {emr.py:317} INFO - Poking step s-003915829FHJD31H6VAY on cluster j-1Z3BJELOTWETV
+[2023-08-13 13:32:49,323] {emr.py:74} INFO - Job flow currently RUNNING
+[2023-08-13 13:33:49,313] {emr.py:317} INFO - Poking step s-003915829FHJD31H6VAY on cluster j-1Z3BJELOTWETV
+[2023-08-13 13:33:49,637] {emr.py:74} INFO - Job flow currently COMPLETED
+[2023-08-13 13:33:49,638] {base.py:301} INFO - Success criteria met. Exiting.
+[2023-08-13 13:33:49,654] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=submit_pyspark_script_to_emr, task_id=execute_pyspark_script_sensor, execution_date=20230813T133140, start_date=20230813T133148, end_date=20230813T133349
+[2023-08-13 13:33:49,686] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-08-13 13:33:49,713] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

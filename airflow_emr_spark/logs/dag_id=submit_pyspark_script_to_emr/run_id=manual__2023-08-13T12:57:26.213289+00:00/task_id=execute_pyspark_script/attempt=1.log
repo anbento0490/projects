@@ -1,0 +1,27 @@
+[2023-08-13 12:57:37,364] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script manual__2023-08-13T12:57:26.213289+00:00 [queued]>
+[2023-08-13 12:57:37,385] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script manual__2023-08-13T12:57:26.213289+00:00 [queued]>
+[2023-08-13 12:57:37,386] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 12:57:37,387] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-08-13 12:57:37,388] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 12:57:37,405] {taskinstance.py:1377} INFO - Executing <Task(EmrAddStepsOperator): execute_pyspark_script> on 2023-08-13 12:57:26.213289+00:00
+[2023-08-13 12:57:37,412] {standard_task_runner.py:52} INFO - Started process 232 to run task
+[2023-08-13 12:57:37,419] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'submit_pyspark_script_to_emr', 'execute_pyspark_script', 'manual__2023-08-13T12:57:26.213289+00:00', '--job-id', '77', '--raw', '--subdir', 'DAGS_FOLDER/orchestration/submit_spark_job_to_emr.py', '--cfg-path', '/tmp/tmptb_5x30w', '--error-file', '/tmp/tmp9k5liwth']
+[2023-08-13 12:57:37,421] {standard_task_runner.py:80} INFO - Job 77: Subtask execute_pyspark_script
+[2023-08-13 12:57:37,520] {task_command.py:370} INFO - Running <TaskInstance: submit_pyspark_script_to_emr.execute_pyspark_script manual__2023-08-13T12:57:26.213289+00:00 [running]> on host airflow_scheduler
+[2023-08-13 12:57:37,655] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=submit_pyspark_script_to_emr
+AIRFLOW_CTX_TASK_ID=execute_pyspark_script
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-13T12:57:26.213289+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-13T12:57:26.213289+00:00
+[2023-08-13 12:57:37,669] {base.py:68} INFO - Using connection ID 'aws_default' for task execution.
+[2023-08-13 12:57:37,672] {base_aws.py:210} INFO - Credentials retrieved from extra_config
+[2023-08-13 12:57:37,673] {base_aws.py:100} INFO - Retrieving region_name from Connection.extra_config['region_name']
+[2023-08-13 12:57:37,763] {emr.py:104} INFO - Adding steps to j-1Z3BJELOTWETV
+[2023-08-13 12:57:38,122] {emr.py:117} INFO - Steps ['s-0032803ZW9KTHFLQF3Z'] added to JobFlow
+[2023-08-13 12:57:38,157] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=submit_pyspark_script_to_emr, task_id=execute_pyspark_script, execution_date=20230813T125726, start_date=20230813T125737, end_date=20230813T125738
+[2023-08-13 12:57:38,196] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-08-13 12:57:38,253] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,47 @@
+[2023-08-13 13:23:57,641] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.fetch_cluster_id manual__2023-08-13T13:23:56.682019+00:00 [queued]>
+[2023-08-13 13:23:57,671] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.fetch_cluster_id manual__2023-08-13T13:23:56.682019+00:00 [queued]>
+[2023-08-13 13:23:57,672] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 13:23:57,673] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-08-13 13:23:57,674] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 13:23:57,690] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): fetch_cluster_id> on 2023-08-13 13:23:56.682019+00:00
+[2023-08-13 13:23:57,695] {standard_task_runner.py:52} INFO - Started process 181 to run task
+[2023-08-13 13:23:57,700] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'submit_pyspark_script_to_emr', 'fetch_cluster_id', 'manual__2023-08-13T13:23:56.682019+00:00', '--job-id', '91', '--raw', '--subdir', 'DAGS_FOLDER/orchestration/submit_spark_job_to_emr.py', '--cfg-path', '/tmp/tmppx9n66q7', '--error-file', '/tmp/tmpmyovn0o2']
+[2023-08-13 13:23:57,702] {standard_task_runner.py:80} INFO - Job 91: Subtask fetch_cluster_id
+[2023-08-13 13:23:57,776] {task_command.py:370} INFO - Running <TaskInstance: submit_pyspark_script_to_emr.fetch_cluster_id manual__2023-08-13T13:23:56.682019+00:00 [running]> on host airflow_scheduler
+[2023-08-13 13:23:57,857] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=submit_pyspark_script_to_emr
+AIRFLOW_CTX_TASK_ID=fetch_cluster_id
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-13T13:23:56.682019+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-13T13:23:56.682019+00:00
+[2023-08-13 13:23:57,870] {base.py:68} INFO - Using connection ID 'aws_default' for task execution.
+[2023-08-13 13:23:57,872] {base_aws.py:210} INFO - Credentials retrieved from extra_config
+[2023-08-13 13:23:57,873] {base_aws.py:100} INFO - Retrieving region_name from Connection.extra_config['region_name']
+[2023-08-13 13:23:58,293] {emr.py:66} INFO - Found cluster name = finance-emr id = j-1Z3BJELOTWETV
+[2023-08-13 13:23:58,294] {submit_spark_job_to_emr.py:53} INFO - Fetched CLUSTER_ID is: j-1Z3BJELOTWETV
+[2023-08-13 13:23:58,295] {submit_spark_job_to_emr.py:54} INFO - Fetched LOCAL CONFIG is:
+ /opt/airflow/dags
+ /computation/src/ 
+ write_df_to_s3.py 
+ /opt/airflow/dags/computation/src/write_df_to_s3.py 
+
+[2023-08-13 13:23:58,296] {submit_spark_job_to_emr.py:55} INFO - Fetched S3 CONFIG is:
+ emr-data-947775527574
+ scripts/write_df_to_s3.py 
+ s3://emr-data-947775527574/src/boa/ 
+ s3://emr-data-947775527574/tgt/boa/ 
+
+[2023-08-13 13:23:58,296] {submit_spark_job_to_emr.py:56} INFO - Fetched SPARK S3 CONFIG is:
+ ['spark-submit', '--deploy-mode', 'client']
+ {'spark.sql.session.timeZone': 'UTC', 'spark.speculation': 'false'} 
+
+[2023-08-13 13:23:58,297] {submit_spark_job_to_emr.py:57} INFO - JAR STRING is:
+ s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/delta-core_2.1.1/io.delta_delta-core_2.12-2.1.1.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/delta-core_2.1.1/io.delta_delta-storage-2.1.1.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/delta-core_2.1.1/org.antlr_antlr4-runtime-4.8.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/delta-core_2.1.1/org.codehaus.jackson_jackson-core-asl-1.9.13.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/net.snowflake_snowflake-ingest-sdk-0.10.3.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/net.snowflake_snowflake-jdbc-3.13.6.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/net.snowflake_spark-snowflake_2.12-2.9.1-spark_3.3.jar 
+
+[2023-08-13 13:23:58,300] {python.py:173} INFO - Done. Returned value was: j-1Z3BJELOTWETV
+[2023-08-13 13:23:58,350] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=submit_pyspark_script_to_emr, task_id=fetch_cluster_id, execution_date=20230813T132356, start_date=20230813T132357, end_date=20230813T132358
+[2023-08-13 13:23:58,396] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-08-13 13:23:58,477] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

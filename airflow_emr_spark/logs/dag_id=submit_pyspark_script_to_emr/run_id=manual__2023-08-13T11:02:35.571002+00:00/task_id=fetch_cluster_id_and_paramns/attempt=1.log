@@ -1,0 +1,46 @@
+[2023-08-13 11:02:36,833] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.fetch_cluster_id_and_paramns manual__2023-08-13T11:02:35.571002+00:00 [queued]>
+[2023-08-13 11:02:36,852] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: submit_pyspark_script_to_emr.fetch_cluster_id_and_paramns manual__2023-08-13T11:02:35.571002+00:00 [queued]>
+[2023-08-13 11:02:36,853] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 11:02:36,853] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-08-13 11:02:36,854] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-08-13 11:02:36,876] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): fetch_cluster_id_and_paramns> on 2023-08-13 11:02:35.571002+00:00
+[2023-08-13 11:02:36,882] {standard_task_runner.py:52} INFO - Started process 176 to run task
+[2023-08-13 11:02:36,887] {standard_task_runner.py:79} INFO - Running: ['airflow', 'tasks', 'run', 'submit_pyspark_script_to_emr', 'fetch_cluster_id_and_paramns', 'manual__2023-08-13T11:02:35.571002+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/orchestration/submit_spark_job_to_emr.py', '--cfg-path', '/tmp/tmp299rlyn_', '--error-file', '/tmp/tmpkqcawo79']
+[2023-08-13 11:02:36,889] {standard_task_runner.py:80} INFO - Job 17: Subtask fetch_cluster_id_and_paramns
+[2023-08-13 11:02:36,978] {task_command.py:370} INFO - Running <TaskInstance: submit_pyspark_script_to_emr.fetch_cluster_id_and_paramns manual__2023-08-13T11:02:35.571002+00:00 [running]> on host airflow_scheduler
+[2023-08-13 11:02:37,089] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=submit_pyspark_script_to_emr
+AIRFLOW_CTX_TASK_ID=fetch_cluster_id_and_paramns
+AIRFLOW_CTX_EXECUTION_DATE=2023-08-13T11:02:35.571002+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-08-13T11:02:35.571002+00:00
+[2023-08-13 11:02:37,106] {base.py:68} INFO - Using connection ID 'aws_default' for task execution.
+[2023-08-13 11:02:37,108] {base_aws.py:210} INFO - Credentials retrieved from extra_config
+[2023-08-13 11:02:37,109] {base_aws.py:100} INFO - Retrieving region_name from Connection.extra_config['region_name']
+[2023-08-13 11:02:37,520] {emr.py:71} INFO - No cluster found for name finance-emr
+[2023-08-13 11:02:37,534] {submit_spark_job_to_emr.py:56} INFO - Fetched LOCAL CONFIG is:
+ /opt/airflow/dags
+ /computation/src/pyspark_scripts/ 
+ read_and_write_back_to_s3.py 
+ /opt/airflow/dags/computation/src/pyspark_scripts/read_and_write_back_to_s3.py 
+
+[2023-08-13 11:02:37,535] {submit_spark_job_to_emr.py:57} INFO - Fetched S3 CONFIG is:
+ emr-data-947775527574
+ scripts/read_and_write_back_to_s3.py 
+ s3://emr-data-947775527574/src/boa/ 
+ s3://emr-data-947775527574/tgt/boa/ 
+
+[2023-08-13 11:02:37,536] {submit_spark_job_to_emr.py:58} INFO - Fetched SPARK S3 CONFIG is:
+ ['spark-submit', '--deploy-mode', 'client']
+ {'spark.sql.session.timeZone': 'UTC', 'spark.speculation': 'false'} 
+
+[2023-08-13 11:02:37,538] {submit_spark_job_to_emr.py:59} INFO - JAR STRING is:
+ s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/snowflake-ingest-sdk-0.10.3.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/snowflake-jdbc-3.13.10.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/spark-snowflake_2.12-2.9.3-spark_3.1.jar 
+
+[2023-08-13 11:02:37,540] {python.py:173} INFO - Done. Returned value was: (None, '/opt/airflow/dags', '/computation/src/pyspark_scripts/', 'read_and_write_back_to_s3.py', '/opt/airflow/dags/computation/src/pyspark_scripts/read_and_write_back_to_s3.py', 'emr-data-947775527574', 'scripts/read_and_write_back_to_s3.py', 's3://emr-data-947775527574/tgt/boa/', 's3://emr-data-947775527574/src/boa/', ['spark-submit', '--deploy-mode', 'client'], {'spark.sql.session.timeZone': 'UTC', 'spark.speculation': 'false'}, 's3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/snowflake-ingest-sdk-0.10.3.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/snowflake-jdbc-3.13.10.jar,s3://emr-data-947775527574/airflow-finance/dags/assets/jars/spark-3.3.1/spark-snowflake_2.9.1/spark-snowflake_2.12-2.9.3-spark_3.1.jar')
+[2023-08-13 11:02:37,578] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=submit_pyspark_script_to_emr, task_id=fetch_cluster_id_and_paramns, execution_date=20230813T110235, start_date=20230813T110236, end_date=20230813T110237
+[2023-08-13 11:02:37,623] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-08-13 11:02:37,680] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
