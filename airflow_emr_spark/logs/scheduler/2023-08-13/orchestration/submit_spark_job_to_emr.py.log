@@ -1,0 +1,14 @@
+[2023-08-13 19:20:50,538] {processor.py:153} INFO - Started process (PID=2210) to work on /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py
+[2023-08-13 19:20:50,540] {processor.py:641} INFO - Processing file /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py for tasks to queue
+[2023-08-13 19:20:50,543] {logging_mixin.py:115} INFO - [2023-08-13 19:20:50,542] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py
+[2023-08-13 19:20:50,663] {processor.py:651} INFO - DAG(s) dict_keys(['submit_pyspark_script_to_emr']) retrieved from /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py
+[2023-08-13 19:20:50,682] {logging_mixin.py:115} INFO - [2023-08-13 19:20:50,681] {dag.py:2379} INFO - Sync 1 DAGs
+[2023-08-13 19:20:50,704] {logging_mixin.py:115} INFO - [2023-08-13 19:20:50,704] {dag.py:2931} INFO - Setting next_dagrun for submit_pyspark_script_to_emr to None, run_after=None
+[2023-08-13 19:20:50,716] {processor.py:161} INFO - Processing /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py took 0.186 seconds
+[2023-08-13 19:21:20,804] {processor.py:153} INFO - Started process (PID=2215) to work on /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py
+[2023-08-13 19:21:20,806] {processor.py:641} INFO - Processing file /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py for tasks to queue
+[2023-08-13 19:21:20,808] {logging_mixin.py:115} INFO - [2023-08-13 19:21:20,808] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py
+[2023-08-13 19:21:20,934] {processor.py:651} INFO - DAG(s) dict_keys(['submit_pyspark_script_to_emr']) retrieved from /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py
+[2023-08-13 19:21:20,953] {logging_mixin.py:115} INFO - [2023-08-13 19:21:20,953] {dag.py:2379} INFO - Sync 1 DAGs
+[2023-08-13 19:21:20,975] {logging_mixin.py:115} INFO - [2023-08-13 19:21:20,975] {dag.py:2931} INFO - Setting next_dagrun for submit_pyspark_script_to_emr to None, run_after=None
+[2023-08-13 19:21:20,989] {processor.py:161} INFO - Processing /opt/airflow/dags/orchestration/submit_spark_job_to_emr.py took 0.191 seconds
