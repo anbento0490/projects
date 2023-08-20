@@ -1,0 +1,28 @@
+{
+   "local_conf": {
+       "local_sub_folder":"/computation/src/pyspark_scripts/", 
+       "spark_script":"read_and_write_back_to_s3.py"
+    },
+   "s3_conf": {
+       "bucket_name": "bucket_name",
+       "s3_script":"scripts/read_and_write_back_to_s3.py",
+       "s3_input": "s3://{bucket_name}/src/balances/",
+       "s3_output":"s3://{bucket_name}/tgt/balances/"
+   },
+   "spark_submit_cmd": {
+       "cmd": "[\"spark-submit\", \"--deploy-mode\", \"client\"]"
+   },
+   "spark_conf": {
+       "spark.sql.session.timeZone": "UTC",
+       "spark.speculation": "false"
+   },
+   "spark_jars_conf": {
+       "bucket_prefix": "s3://{bucket_name}/dags",
+       "bucket_subfolder": "/assets/jars/"
+   },
+   "spark_jars_conf_value": [
+       "jar1.jar",
+       "jar2.jar",
+       "jar3.jar"
+   ]
+}
