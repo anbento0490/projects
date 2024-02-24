@@ -1,0 +1,110 @@
+
+version: '3.8'
+
+x-airflow-common:
+  &airflow-common
+  build:
+    context: "."
+    dockerfile: "Dockerfile"
+  environment:
+    - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres:5432/airflow_metadata_db
+    - AIRFLOW__DATABASE__LOAD_DEFAULT_CONNECTIONS=False
+    - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+    - _AIRFLOW_DB_UPGRADE=True
+    - _AIRFLOW_WWW_USER_CREATE=True
+    - _AIRFLOW_WWW_USER_USERNAME=airflow
+    - _AIRFLOW_WWW_USER_PASSWORD=airflow
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./airflow-utils/logs:/opt/airflow/logs
+    - ./airflow-utils/plugins:/opt/airflow/plugins
+    - ./airflow-utils/airflow.cfg:/opt/airlfow/airflow.cfg
+  depends_on:
+    - postgres
+  networks:
+    - shared-network
+
+services:
+# POSTGRES DB
+##########################
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=airflow_metadata_db
+      - POSTGRES_PORT=5432
+    ports:
+      - "5439:5432"
+    volumes:
+    - ./postgres-data:/var/lib/postgresql/data
+    - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - shared-network
+# ##########################
+# # AIRFLOW WEBSERVER
+  airflow-webserver:
+    << : *airflow-common
+    command: airflow webserver
+    ports:
+      - 8085:8080
+    container_name: airflow_webserver
+    restart: always
+
+# ##########################
+# # AIRFLOW SCHEDULER
+  airflow-scheduler:
+    << : *airflow-common
+    command: airflow scheduler
+    container_name: airflow_scheduler
+    restart: always
+
+# ##########################
+# # MINIO STORAGE
+  minio:
+    image: minio/minio
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password
+      - MINIO_DOMAIN=minio
+      - MINIO_REGION=us-east-1
+    ports:
+      - 9001:9001
+      - 9000:9000
+    command: ["server", "/data", "--console-address", ":9001"]
+    volumes:
+      - ${PWD}/minio/data:/data
+    networks:
+      - shared-network
+# ##########################
+  mc:
+    depends_on:
+      - minio
+    image: minio/mc
+    container_name: mc
+    environment:
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password
+      - AWS_REGION=us-east-1
+    entrypoint: >
+      /bin/sh -c "
+      until (/usr/bin/mc config host add minio http://minio:9000 admin password) do echo '...waiting...' && sleep 1; done;
+      /usr/bin/mc rm -r --force minio/iceberg-bucket;
+      /usr/bin/mc mb minio/iceberg-bucket;
+      /usr/bin/mc policy set public minio/iceberg-bucket;
+      tail -f /dev/null
+      "      
+    networks:
+      - shared-network
+# ##########################
+# # NETWORKS
+networks:
+  shared-network:
+    driver: bridge
+
+
+
