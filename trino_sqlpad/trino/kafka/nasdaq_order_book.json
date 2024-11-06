@@ -1,0 +1,61 @@
+{
+  "tableName": "nasdaq_order_book",
+  "schemaName": "default",
+  "topicName": "nasdaq_order_book",
+  "key": {
+    "dataFormat": "raw",
+    "fields": []
+  },
+  "message": {
+    "dataFormat": "json",
+    "fields": [
+      {
+        "name": "message_type",
+        "mapping": "message_type",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "tracking_number",
+        "mapping": "tracking_number",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "timestamp",
+        "mapping": "timestamp",
+        "type": "TIMESTAMP(3)",
+        "dataFormat": "custom-date-time",
+        "formatHint": "yyyy-MM-dd HH:mm:ss.SSS"
+      },
+      {
+        "name": "order_reference_number",
+        "mapping": "order_reference_number",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "buy_sell_indicator",
+        "mapping": "buy_sell_indicator",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "stock",
+        "mapping": "stock",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "shares",
+        "mapping": "shares",
+        "type": "INTEGER"
+      },
+      {
+        "name": "price",
+        "mapping": "price",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "attribution",
+        "mapping": "attribution",
+        "type": "INTEGER"
+      }
+    ]
+  }
+}
