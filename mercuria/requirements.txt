@@ -1,5 +1,0 @@
-apache-airflow[amazon,postgres]==2.5.2
-psycopg2==2.9.10
-polars==1.7.1
-SQLAlchemy==1.4.54
-connectorx
