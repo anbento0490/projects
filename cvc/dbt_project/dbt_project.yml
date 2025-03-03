@@ -1,0 +1,47 @@
+name: dbt_project
+version: '1.0'
+config-version: 2
+profile: prod_db
+
+seeds:
+  dbt_project:
+    funds:
+      +identifier: funds
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT funds_pkey PRIMARY KEY (fund_id)"
+    fund_transactions:
+      +identifier: fund_transactions
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT ft_pkey PRIMARY KEY (transaction_id)"
+    companies:
+      +identifier: companies
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT companies_pkey PRIMARY KEY (company_id)"
+    company_transactions:
+      +identifier: company_transactions
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT ct_pkey PRIMARY KEY (transaction_id)"
+    transaction_type:
+      +identifier: transaction_type
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT transaction_type_pkey PRIMARY KEY (transaction_type_id)"
+    sectors:
+      +identifier: sectors
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT sectors_pkey PRIMARY KEY (sector_id)"
+    countries:
+      +identifier: countries
+      post-hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT countries_pkey PRIMARY KEY (country_id)"
+
+models:
+  dbt_project:
+    staging:
+      +schema: cvc_staging
+      +materialized: view
+    intermediate:
+      +schema: cvc_intermediate
+      +materialized: table
+    core:
+      +schema: cvc_core
+      +materialized: table
