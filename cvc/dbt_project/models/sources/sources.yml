@@ -1,0 +1,86 @@
+version: 2
+sources:
+  - name: cvc_raw
+    description: "Raw seed data loaded from CSV files in the dbt_project/seeds directory."
+    tables:
+      - name: company_transactions
+        description: "Seed table from company_transactions.csv representing company transactions."
+        columns:
+          - name: transaction_id
+            description: "Primary key for company transactions."
+          - name: company_id
+            description: "Foreign key referencing the companies table."
+          - name: fund_id
+            description: "Foreign key referencing the funds table."
+          - name: transaction_type_id
+            description: "Foreign key referencing the transaction_type table."
+          - name: sector_id
+            description: "Foreign key referencing the sectors table."
+          - name: country_id
+            description: "Foreign key referencing the countries table."
+          - name: transaction_date
+            description: "Date of the transaction."
+          - name: transaction_amount
+            description: "Amount of the transaction."
+      - name: fund_transactions
+        description: "Seed table from fund_transactions.csv representing fund transactions."
+        columns:
+          - name: transaction_id
+            description: "Primary key for fund transactions."
+          - name: fund_id
+            description: "Foreign key referencing the funds table."
+          - name: transaction_type
+            description: "Type of the transaction."
+          - name: transaction_index
+            description: "Index of the transaction."
+          - name: transaction_date
+            description: "Date of the transaction."
+          - name: transaction_amount
+            description: "Amount of the transaction."
+      - name: companies
+        description: "Seed table from companies.csv representing companies."
+        columns:
+          - name: company_id
+            description: "Primary key for companies."
+          - name: company_name
+            description: "Name of the company."
+          - name: sector_id
+            description: "Foreign key referencing the sectors table."
+          - name: country_id
+            description: "Foreign key referencing the countries table."
+      - name: countries
+        description: "Seed table from countries.csv representing countries."
+        columns:
+          - name: country_id
+            description: "Primary key for countries."
+          - name: country_name
+            description: "Name of the country."
+          - name: region_name
+            description: "Region to which the country belongs."
+      - name: funds
+        description: "Seed table from funds.csv representing funds."
+        columns:
+          - name: fund_id
+            description: "Primary key for funds."
+          - name: fund_name
+            description: "Name of the fund."
+          - name: fund_size
+            description: "Size of the fund."
+          - name: sector_id
+            description: "Foreign key referencing the sectors table."
+          - name: country_id
+            description: "Foreign key referencing the countries table."
+      - name: sectors
+        description: "Seed table from sectors.csv representing sectors."
+        columns:
+          - name: sector_id
+            description: "Primary key for sectors."
+          - name: sector_name
+            description: "Name of the sector."
+      - name: transaction_type
+        description: "Seed table from transaction_type.csv representing transaction types."
+        columns:
+          - name: transaction_type_id
+            description: "Primary key for transaction types."
+          - name: transaction_type_name
+            description: "Name of the transaction type."

@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: debezium/postgres:17-alpine
+    container_name: postgres_db
+    hostname: postgres
+    environment:
+      - POSTGRES_DB=analytics_db
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  dbt:
+    container_name: dbt_postgres
+    build: .
+    working_dir: /usr/app/dbt_project
+    volumes:
+      - ./dbt_project:/usr/app/dbt_project
+    ports:
+      - "8081:8081"  
+    depends_on:
+      - postgres
+    environment:
+      - DBT_PROFILES_DIR=/usr/app/dbt_project
+    command: tail -f /dev/null
+
+  sqlpad:
+    image: sqlpad/sqlpad:7
+    container_name: sqlpad
+    ports:
+      - "3000:3000"
+    environment:
+      SQLPAD_ADMIN: admin@sqlpad.com
+      SQLPAD_ADMIN_PASSWORD: admin
+      SQLPAD_CONNECTIONS__pgconn__name: AnalytycsDB
+      SQLPAD_CONNECTIONS__pgconn__driver: postgres
+      SQLPAD_CONNECTIONS__pgconn__host: postgres
+      SQLPAD_CONNECTIONS__pgconn__database: analytics_db
+      SQLPAD_CONNECTIONS__pgconn__username: postgres
+      SQLPAD_CONNECTIONS__pgconn__password: postgres
+      SQLPAD_CONNECTIONS__pgconn__idleTimeoutSeconds: 60
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data:
