@@ -1,3 +1,3 @@
-API_KEY = 'N5O8WPCPCKAZIH2J'
+API_KEY = 'XXXX'
 USER = 'postgres'
 PASSWORD = 'postgres'
