@@ -1,0 +1,90 @@
+x-airflow-common:
+  &airflow-common
+  build:
+    context: "."
+    dockerfile: "Dockerfile"
+  environment:
+    - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres:5432/airflow_metadata_db
+    - AIRFLOW__DATABASE__LOAD_DEFAULT_CONNECTIONS=False
+    - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+    - _AIRFLOW_DB_UPGRADE=True
+    - _AIRFLOW_WWW_USER_CREATE=True
+    - _AIRFLOW_WWW_USER_USERNAME=admin
+    - _AIRFLOW_WWW_USER_PASSWORD=password
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./airflow-utils/logs:/opt/airflow/logs
+    - ./airflow-utils/plugins:/opt/airflow/plugins
+    - ./data:/opt/airflow/data
+  depends_on:
+    - postgres
+  networks:
+    - shared-network
+
+
+services:
+###########################
+## AIRFLOW WEBSERVER
+  airflow-webserver:
+    << : *airflow-common
+    command: airflow webserver
+    ports:
+      - 8085:8080
+    container_name: airflow_webserver
+    restart: always
+
+
+###########################
+## AIRFLOW SCHEDULER
+  airflow-scheduler:
+    << : *airflow-common
+    command: airflow scheduler
+    container_name: airflow_scheduler
+    restart: always
+
+
+# POSTGRES DB
+##########################
+  postgres:
+    image: debezium/postgres:17-alpine
+    container_name: postgres
+    hostname: postgres
+    environment:
+      - POSTGRES_DB=airflow_metadata_db
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - shared-network
+
+###########################
+## JUPYTERLAB - DuckDB Explorer
+  jupyterlab:
+    image: jupyter/minimal-notebook:latest
+    container_name: jupyterlab_duckdb
+    ports:
+      - "8889:8888"
+    volumes:
+      - ./data:/home/jovyan/data
+      - ./explore_duckdb.ipynb:/home/jovyan/explore_duckdb.ipynb
+      - ./dags:/home/jovyan/dags
+      - ./jupyter-requirements.txt:/home/jovyan/requirements.txt
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=admin
+    command: bash -c "pip install -r /home/jovyan/requirements.txt && start-notebook.sh --NotebookApp.token='admin' --NotebookApp.password=''"
+    networks:
+      - shared-network
+    restart: unless-stopped
+
+###########################
+## NETWORKS
+networks:
+  shared-network:
+    driver: bridge
+
